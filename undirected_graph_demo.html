@@ -1,0 +1,38 @@
+<!--
+    Created by SaraKeeper on 2022/11/07.
+    All Rights Reserved.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>无向图演示demo</title>
+        <script src="bearcat_graph_v1.0.js"></script>
+        <script src="lib/js/d3.min.js"></script>
+        <style type="text/css">
+            svg {
+                border: solid 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script>
+            let undirectedGraph = new UndirectedGraph("container",600,400);
+            undirectedGraph.setConfig({"draggable": true});
+            undirectedGraph.setElements(
+                [
+                    {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
+                    {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
+                    {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
+                ],
+                [
+                    {n1:1, n2:2, c:"#000000", w:2},
+                    {n1:1, n2:3, c:"#000000", w:2}
+                ]
+            );
+            undirectedGraph.showGraph();
+        </script>
+    </body>
+</html>
