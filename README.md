@@ -1,2 +1,92 @@
 # BearcatGraph
+
+#### version 1.0
+
+---
+ 
+### Authored by SaraKeeper
+
 An Easier Graph Generating Tool on D3 Library for HTML&amp;JS Developers
+
+---
+
+&nbsp;
+
+### 目标
+
+- 支持 d3.js 绘图库
+- 让 JavaScript 开发者更简单地绘图
+
+&nbsp;
+
+### 功能
+
+- 绘制可拖动无向图
+
+&nbsp;
+
+### 范例
+[范例展示](http://eojhelper.fun/undirected_graph.html)
+[范例代码](https://github.com/SaraKeeper/BearcatGraph/blob/main/undirected_graph_demo.html)
+
+### API
+
+#### 准备
+##### 引入资源
+```html
+<script src="http://eojhelper.fun/cdn/d3.min.js"></script>
+<script src="http://eojhelper.fun/cdn/bearcat_graph_v1.0.js"></script>
+```
+##### 如果资源加载慢，还可以尝试：
+```html
+<script src="https://poetry0.oss-cn-hongkong.aliyuncs.com/d3.min.js"></script>
+<script src="https://poetry0.oss-cn-hongkong.aliyuncs.com/bearcat_graph_v1.0.js"></script>
+```
+
+#### 生成图
+##### 在 id 为 container 的 dom 元素内部创建无向图，宽高分别为 600、400
+```javascript
+let undirectedGraph = new UndirectedGraph("container",600,400);
+```
+
+#### 填充元素
+##### 为无向图设置点元素和边元素
+```javascript
+/**
+ *  ic: innerColor, 点颜色
+ *  io: innerOpacity, 点透明度
+ *  bc: borderColor, 边框颜色
+ *  bw: borderWidth, 边框宽度
+ *  n1,n2: 边相连的点
+ *  c: color, 边颜色
+ *  w: width, 边宽度
+ */
+undirectedGraph.setElements(
+    [
+        {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
+        {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
+        {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
+    ],
+    [
+        {n1:1, n2:2, c:"#000000", w:2},
+        {n1:1, n2:3, c:"#000000", w:2}
+    ]
+);
+```
+
+#### 设置绘制格式
+##### 对绘图的整体样式作参数控制
+```javascript
+/**
+ * draggable: 是否可拖动
+ */
+undirectedGraph.setConfig({
+    "draggable": true
+});
+```
+
+#### 绘图
+##### 绘制图片
+```javascript
+undirectedGraph.showGraph();
+```
