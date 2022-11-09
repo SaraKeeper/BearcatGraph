@@ -25,8 +25,8 @@ class UndirectedGraph {
         let nodeMap = new Map();
         for(let node of nodeList) {
             if(node.no<0 || noOccupiedSet.has(node.no)) continue;
-            if(node.x<node.r+node.bw || node.x>this.#sourceWidth-node.r-node.bw)continue;
-            if(node.y<node.r+node.bw || node.y>this.#sourceHeight-node.r-node.bw)continue;
+            if(node.x<node.r+node.bw || node.x>this.#sourceWidth-node.r-node.bw) continue;
+            if(node.y<node.r+node.bw || node.y>this.#sourceHeight-node.r-node.bw) continue;
             noOccupiedSet.add(node.no);
             this.#maxNodeNo = Math.max(this.#maxNodeNo,node.no);
             nodeMap.set(node.no, {x:node.x, y:node.y, r:node.r, ic:node.ic, io:node.io, bc:node.bc, bw:node.bw});
