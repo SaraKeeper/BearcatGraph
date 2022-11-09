@@ -19,8 +19,30 @@
     <body>
         <div id="container"></div>
         <script>
-            let undirectedGraph = new UndirectedGraph("container",600,400);
-            undirectedGraph.setElements(
+            let a = 70;
+            let nodeList = [];
+            for(let i = 0;i <= 20000;i++) {
+                let t = i/1000-Math.PI / 2;
+                let x = a*(2*Math.sin(t)-Math.sin(2*t))+300;
+                let y = -a*(2*Math.cos(t)-Math.cos(2*t))+150;
+                nodeList.push({no:i, x:x, y:y, r:5, ic:"#FF0000", io:1.0, bc:"#FF0000", bw:0});
+            }
+            let undirectedGraph1 = new UndirectedGraph("container",600,400);
+            undirectedGraph1.setElements(
+                nodeList,
+                [
+                    {n1:1, n2:2, c:"#000000", w:2},
+                    {n1:1, n2:3, c:"#000000", w:2}
+                ]
+            );
+            undirectedGraph1.setConfig({
+                "draggable": true
+            });
+            undirectedGraph1.showGraph();
+        </script>
+        <script>
+            let undirectedGraph2 = new UndirectedGraph("container",600,400);
+            undirectedGraph2.setElements(
                 [
                     {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
                     {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
@@ -31,10 +53,10 @@
                     {n1:1, n2:3, c:"#000000", w:2}
                 ]
             );
-            undirectedGraph.setConfig({
+            undirectedGraph2.setConfig({
                 "draggable": true
             });
-            undirectedGraph.showGraph();
+            undirectedGraph2.showGraph();
         </script>
     </body>
 </html>

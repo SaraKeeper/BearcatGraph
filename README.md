@@ -27,40 +27,59 @@ An Easier Graph Generating Tool on D3 Library for HTML&amp;JS Developers
 
 ### 范例
 [范例展示](http://eojhelper.fun/undirected_graph.html)
+
 [范例代码](https://github.com/SaraKeeper/BearcatGraph/blob/main/undirected_graph_demo.html)
 
-### API
+&nbsp;
 
-#### 准备
-##### 引入资源
+### 使用
+
+##### 引入依赖资源
 ```html
 <script src="http://eojhelper.fun/cdn/d3.min.js"></script>
 <script src="http://eojhelper.fun/cdn/bearcat_graph_v1.0.js"></script>
 ```
-##### 如果资源加载慢，还可以尝试：
+##### 如果资源加载慢，可以更换下载源为：
 ```html
 <script src="https://poetry0.oss-cn-hongkong.aliyuncs.com/d3.min.js"></script>
 <script src="https://poetry0.oss-cn-hongkong.aliyuncs.com/bearcat_graph_v1.0.js"></script>
 ```
-
-#### 生成图
-##### 在 id 为 container 的 dom 元素内部创建无向图，宽高分别为 600、400
+##### 绘制图
 ```javascript
 let undirectedGraph = new UndirectedGraph("container",600,400);
+undirectedGraph.setElements(
+    [
+        {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
+        {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
+        {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
+    ],
+    [
+        {n1:1, n2:2, c:"#000000", w:2},
+        {n1:1, n2:3, c:"#000000", w:2}
+    ]
+);
+undirectedGraph.setConfig({
+    "draggable": true
+});
+undirectedGraph.showGraph();
 ```
 
-#### 填充元素
-##### 为无向图设置点元素和边元素
+&nbsp;
+
+### API
+
+##### 创建图对象
 ```javascript
-/**
- *  ic: innerColor, 点颜色
- *  io: innerOpacity, 点透明度
- *  bc: borderColor, 边框颜色
- *  bw: borderWidth, 边框宽度
- *  n1,n2: 边相连的点
- *  c: color, 边颜色
- *  w: width, 边宽度
- */
+// 在 id 为 container 的 html 元素内部创建 600×400 图对象
+new UndirectedGraph("container",600,400);
+```
+##### 创建图对象
+```javascript
+// 为图对象 undirectedGraph 设置点和边
+// 点的参数如下：
+// no:编号(非负整数)，x,y:位置，r:半径
+// ic:innerColor点颜色，io:innerOpacity点透明度
+// bc:borderColor边界颜色，bw:borderWidth边界宽度
 undirectedGraph.setElements(
     [
         {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
@@ -73,20 +92,15 @@ undirectedGraph.setElements(
     ]
 );
 ```
-
-#### 设置绘制格式
-##### 对绘图的整体样式作参数控制
+##### 配置图参数
 ```javascript
-/**
- * draggable: 是否可拖动
- */
+// draggable:是否可拖动
 undirectedGraph.setConfig({
     "draggable": true
 });
 ```
-
-#### 绘图
-##### 绘制图片
+##### 渲染图
 ```javascript
+// draggable:是否可拖动
 undirectedGraph.showGraph();
 ```
