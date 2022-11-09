@@ -101,6 +101,5 @@ undirectedGraph.setConfig({
 ```
 ##### 渲染图
 ```javascript
-// draggable:是否可拖动
 undirectedGraph.showGraph();
 ```
