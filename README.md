@@ -28,7 +28,7 @@ An Easier Graph Generating Tool on D3 Library for HTML&amp;JS Developers
 ### 范例
 [范例展示](http://eojhelper.fun/undirected_graph.html)
 
-[范例代码](https://github.com/SaraKeeper/BearcatGraph/blob/main/undirected_graph_demo.html)
+[范例代码](https://github.com/SaraKeeper/BearcatGraph/blob/main/force_guide_graph_demo.html)
 
 &nbsp;
 
