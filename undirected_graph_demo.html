@@ -8,8 +8,8 @@
     <head>
         <meta charset="UTF-8">
         <title>无向图演示demo</title>
-        <script src="http://eojhelper.fun/cdn/d3.min.js"></script>
-        <script src="http://eojhelper.fun/cdn/bearcat_graph_v1.0.js"></script>
+        <script src="http://eojhelper.fun/cdn/d3force.min.js"></script>
+        <script src="http://eojhelper.fun/cdn/bearcat_graph_v2.0.js"></script>
         <style type="text/css">
             svg {
                 border: solid 2px;
@@ -20,38 +20,54 @@
         <div id="container"></div>
         <script>
             let a = 70;
+            let nodeNum = 1900;
             let nodeList = [];
-            for(let i = 0;i <= 20000;i++) {
-                let t = i/1000-Math.PI / 2;
+            let edgeList = [];
+            for(let i = 0;i < nodeNum;i++) {
+                let t = i/100-Math.PI / 2;
                 let x = a*(2*Math.sin(t)-Math.sin(2*t))+300;
                 let y = -a*(2*Math.cos(t)-Math.cos(2*t))+150;
-                nodeList.push({no:i, x:x, y:y, r:5, ic:"#FF0000", io:1.0, bc:"#FF0000", bw:0});
+                nodeList.push({no:i, x:x, y:y, r:5, ic:"#FF0000", io:0.8, bc:"#FF0000", bw:0});
+                edgeList.push({n1:i, n2:(i+1)%nodeNum, c:"#FF0000", w:2});
             }
-            let undirectedGraph1 = new UndirectedGraph("container",600,400);
-            undirectedGraph1.setElements(
-                nodeList,
-                []
-            );
-            undirectedGraph1.setConfig({
-                "draggable": true
+            let forceGuideGraph = new ForceGuideGraph("container",600,400);
+            forceGuideGraph.setElements(nodeList,edgeList);
+            forceGuideGraph.setConfig({
+                "initFix": true,
+                "draggable": true,
+                "dragFix": true,
+                "clickExchange": true,
+                "fixInnerColor": "#FF0000",
+                "fixInnerOpacity": 1.0,
+                "fixBorderColor": "#FF0000",
+                "fixBorderWidth": 0,
+                "guideSpeed": 0.3
             });
-            undirectedGraph1.showGraph();
+            forceGuideGraph.showGraph();
         </script>
         <script>
-            let undirectedGraph2 = new UndirectedGraph("container",600,400);
+            let undirectedGraph2 = new ForceGuideGraph("container",600,400);
             undirectedGraph2.setElements(
                 [
-                    {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
+                    {no:1, x:100, y:100, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
                     {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
-                    {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
+                    {no:3, x:200, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
                 ],
                 [
                     {n1:1, n2:2, c:"#000000", w:2},
-                    {n1:1, n2:3, c:"#000000", w:2}
+                    {n1:1, n2:3, c:"#8CC084", w:2}
                 ]
             );
             undirectedGraph2.setConfig({
-                "draggable": true
+                "initFix": false,
+                "draggable": true,
+                "dragFix": true,
+                "clickExchange": true,
+                "fixInnerColor": "#FF0000",
+                "fixInnerOpacity": 1.0,
+                "fixBorderColor": "#FF0000",
+                "fixBorderWidth": 0,
+                "guideSpeed": 0.3
             });
             undirectedGraph2.showGraph();
         </script>
