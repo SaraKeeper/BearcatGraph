@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <title>无向图演示demo</title>
         <script src="http://eojhelper.fun/cdn/d3force.min.js"></script>
-        <script src="http://eojhelper.fun/cdn/bearcat_graph_v2.0.js"></script>
+        <script src="http://eojhelper.fun/cdn/bearcat_graph_v3.0.js"></script>
         <style type="text/css">
             svg {
                 border: solid 2px;
@@ -27,13 +27,12 @@
                 let t = i/100-Math.PI / 2;
                 let x = a*(2*Math.sin(t)-Math.sin(2*t))+300;
                 let y = -a*(2*Math.cos(t)-Math.cos(2*t))+150;
-                nodeList.push({no:i, x:x, y:y, r:5, ic:"#FF0000", io:0.8, bc:"#FF0000", bw:0});
+                nodeList.push({no:i, x:x, y:y, r:5, ic:"#FF0000", io:0.8, bc:"#FF0000", bw:0, fix:true});
                 edgeList.push({n1:i, n2:(i+1)%nodeNum, c:"#FF0000", w:2});
             }
             let forceGuideGraph = new ForceGuideGraph("container",600,400);
             forceGuideGraph.setElements(nodeList,edgeList);
             forceGuideGraph.setConfig({
-                "initFix": true,
                 "draggable": true,
                 "dragFix": true,
                 "clickExchange": true,
@@ -46,20 +45,19 @@
             forceGuideGraph.showGraph();
         </script>
         <script>
-            let undirectedGraph2 = new ForceGuideGraph("container",600,400);
-            undirectedGraph2.setElements(
+            let undirectedGraph = new ForceGuideGraph("container",600,400);
+            undirectedGraph.setElements(
                 [
-                    {no:1, x:100, y:100, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
-                    {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
-                    {no:3, x:200, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
+                    {no:1, x:100, y:100, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1, fix:false},
+                    {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2, fix:true},
+                    {no:3, x:200, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3, fix:true}
                 ],
                 [
                     {n1:1, n2:2, c:"#000000", w:2},
                     {n1:1, n2:3, c:"#8CC084", w:2}
                 ]
             );
-            undirectedGraph2.setConfig({
-                "initFix": false,
+            undirectedGraph.setConfig({
                 "draggable": true,
                 "dragFix": true,
                 "clickExchange": true,
@@ -69,7 +67,7 @@
                 "fixBorderWidth": 0,
                 "guideSpeed": 0.3
             });
-            undirectedGraph2.showGraph();
+            undirectedGraph.showGraph();
         </script>
     </body>
 </html>

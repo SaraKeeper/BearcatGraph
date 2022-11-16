@@ -1,6 +1,6 @@
 # BearcatGraph
 
-#### version 2.0
+#### version 3.0
 
 ---
  
@@ -21,7 +21,7 @@ An Easier Graph Generating Tool on D3 Library for HTML&amp;JS Developers
 
 ### 功能
 
-- 绘制可拖动无向图
+- 绘制可拖动、可固定无向图
 
 &nbsp;
 
@@ -37,21 +37,21 @@ An Easier Graph Generating Tool on D3 Library for HTML&amp;JS Developers
 ##### 引入依赖资源
 ```html
 <script src="http://eojhelper.fun/cdn/d3force.min.js"></script>
-<script src="http://eojhelper.fun/cdn/bearcat_graph_v2.0.js"></script>
+<script src="http://eojhelper.fun/cdn/bearcat_graph_v3.0.js"></script>
 ```
 ##### 如果资源加载慢，可以更换下载源为：
 ```html
 <script src="https://poetry0.oss-cn-hongkong.aliyuncs.com/d3force.min.js"></script>
-<script src="https://poetry0.oss-cn-hongkong.aliyuncs.com/bearcat_graph_v2.0.js"></script>
+<script src="https://poetry0.oss-cn-hongkong.aliyuncs.com/bearcat_graph_v3.0.js"></script>
 ```
 ##### 绘制图
 ```javascript
 let forceGuideGraph = new ForceGuideGraph("container",600,400);
 forceGuideGraph.setElements(
     [
-        {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
-        {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
-        {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
+        {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1, fix:false},
+        {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2, fix:true},
+        {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3, fix:true}
     ],
     [
         {n1:1, n2:2, c:"#000000", w:2},
@@ -59,7 +59,6 @@ forceGuideGraph.setElements(
     ]
 );
 forceGuideGraph.setConfig({
-    "initFix": true,
     "draggable": true,
     "dragFix": true,
     "clickExchange": true,
@@ -85,14 +84,16 @@ new ForceGuideGraph("container",600,400);
 ```javascript
 // 为图对象 undirectedGraph 设置点和边
 // 点的参数如下：
-// no:编号(非负整数)，x,y:位置，r:半径
+// no:编号(非负整数)，x,y:位置，r:半径，fix:是否初始固定
 // ic:innerColor点颜色，io:innerOpacity点透明度
 // bc:borderColor边界颜色，bw:borderWidth边界宽度
+// 边的参数如下：
+// n1:起点编号，n2:终点编号，c:边颜色，w:边宽度
 forceGuideGraph.setElements(
     [
-        {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1},
-        {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2},
-        {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3}
+        {no:1, x:100, y:200, r:30, ic:"#ABB4FF", io:1.0, bc:"#1890FF", bw:1, fix:false},
+        {no:2, x:300, y:300, r:10, ic:"#3E7B9B", io:1.0, bc:"#1890FF", bw:2, fix:true},
+        {no:3, x:500, y:200, r:20, ic:"#8CC084", io:1.0, bc:"#1890FF", bw:3, fix:true}
     ],
     [
         {n1:1, n2:2, c:"#000000", w:2},
@@ -103,7 +104,6 @@ forceGuideGraph.setElements(
 ##### 配置图参数
 ```javascript
 /**
- * initFix:点是否初始固定
  * draggable:是否可拖动
  * dragFix:点是否拖动固定
  * clickExchange:点是否单击变换状态
@@ -111,7 +111,7 @@ forceGuideGraph.setElements(
  * fixInnerOpacity:固定状态点统一透明度
  * fixBorderColor:固定状态点统一边界颜色
  * fixBorderWidth:固定状态点统一边界宽度
- * guideSpeed:引导状态移动速度
+ * guideSpeed:引导速度
  */
 forceGuideGraph.setConfig({
     "initFix": true,
